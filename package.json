@@ -13,9 +13,7 @@
   "dependencies": {
     "@kubernetes/client-node": "^0.21.0",
     "axios": "^1.7.3",
-    "express": "^4.19.2",
-    "install": "^0.13.0",
-    "npm": "^10.8.1"
+    "express": "^4.19.2"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",

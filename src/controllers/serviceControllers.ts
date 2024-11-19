@@ -38,7 +38,7 @@ users:
       - json
       command: aws
 `
-        const {serviceName, imagURL, kubeConfigText } = req.body();
+        const {serviceName, imagURL, kubeConfigText, host } = req.body();
         const deploymentName = serviceName;
         const namespace = 'default';
         const containers= [
@@ -52,10 +52,10 @@ users:
         ]
         const serviceData = await createDeploymentAndService(namespace,serviceName,deploymentName,containers,kubeConfigText);
         const ingressName = 'api-gateway'
-        const host = 'anupamkumarsourav.site';
+        const optional_host = 'anupamkumarsourav.site';
         const subdomain = serviceName
         const servicePort = 80;
-        const ingressData = await pushRule(namespace,ingressName,host,serviceName,kubeConfigText,subdomain,servicePort);
+        const ingressData = await pushRule(namespace,ingressName,host || optional_host,serviceName,kubeConfigText,subdomain,servicePort);
         res.status(201).json({service:serviceData,ingressData:ingressData});
     }
 )

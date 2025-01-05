@@ -14,7 +14,7 @@ export const protect = asyncHandler(async (req: AuthenticatedRequest, res: Respo
     if (req.headers.authorization && req.headers.authorization.startsWith("Bearer")) {
         try {
             token = req.headers.authorization.split(" ")[1];
-
+            // console.log(process.env.JWT_SECRET,"token:",token);
             // Decodes token id
             const decoded = jwt.verify(token, process.env.JWT_SECRET as string) as jwt.JwtPayload;
 
@@ -23,7 +23,7 @@ export const protect = asyncHandler(async (req: AuthenticatedRequest, res: Respo
 
             next();
         } catch (error) {
-            console.error(error);
+            // console.error(error);
             res.status(401);
             throw new Error("Not authorized, token failed");
         }
